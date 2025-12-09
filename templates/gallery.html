@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block title %}{% if lang == 'de' %}Galerie{% else %}Gallery{% endif %} - {{ restaurant.name }}{% endblock %}
+
+{% block content %}
+<!-- Gallery Hero -->
+<section class="page-hero gallery-hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="page-title">
+                {% if lang == 'de' %}Galerie{% else %}Gallery{% endif %}
+            </h1>
+            <p class="page-description">
+                {% if lang == 'de' %}
+                Entdecken Sie die Atmosphäre und die Kunstwerke unserer Küche in Bildern
+                {% else %}
+                Discover the atmosphere and artistry of our cuisine through images
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Filter -->
+<section class="gallery-filter">
+    <div class="container">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">
+                {% if lang == 'de' %}Alle{% else %}All{% endif %}
+            </button>
+            <button class="filter-btn" data-filter="food">
+                {% if lang == 'de' %}Gerichte{% else %}Food{% endif %}
+            </button>
+            <button class="filter-btn" data-filter="restaurant">
+                {% if lang == 'de' %}Restaurant{% else %}Restaurant{% endif %}
+            </button>
+            <button class="filter-btn" data-filter="events">
+                {% if lang == 'de' %}Veranstaltungen{% else %}Events{% endif %}
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Grid -->
+<section class="gallery-section">
+    <div class="container">
+        <div class="gallery-grid" id="gallery-grid">
+            
+            <!-- Food Photos -->
+            <div class="gallery-item" data-category="food">
+                <div class="gallery-image">
+                    <div class="image-placeholder food-1">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                </div>
+                <div class="gallery-overlay">
+                    <h3>{% if lang == 'de' %}Frischer Lachs{% else %}Fresh Salmon{% endif %}</h3>
+                    <p>{% if lang == 'de' %}Mit karibischen Gewürzen{% else %}With Caribbean spices{% endif %}</p>
+                    <button class="view-btn" onclick="openLightbox(this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="food">
+                <div class="gallery-image">
+                    <div class="image-placeholder food-2">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                </div>
+                <div class="gallery-overlay">
+                    <h3>Louisiana Paella</h3>
+                    <p>{% if lang == 'de' %}Haitianische Spezialität{% else %}Haitian specialty{% endif %}</p>
+                    <button class="view-btn" onclick="openLightbox(this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="food">
+                <div class="gallery-image">
+                    <div class="image-placeholder food-3">
+                        <i class="fas fa-pepper-hot"></i>
+                    </div>
+                </div>
+                <div class="gallery-overlay">
+                    <h3>{% if lang == 'de' %}Meeresfrüchte Platte{% else %}Seafood Platter{% endif %}</h3>
+                    <p>{% if lang == 'de' %}Tägliche Auswahl{% else %}Daily selection{% endif %}</p>
+                    <button class="view-btn" onclick="openLightbox(this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Restaurant Photos -->
+            <div class="gallery-item" data-category="restaurant">
+                <div class="gallery-image">
+                    <div class="image-placeholder restaurant-1">
+                        <i class="fas fa-home"></i>
+                    </div>
+                </div>
+                <div class="gallery-overlay">
+                    <h3>{% if lang == 'de' %}Hauptsaal{% else %}Main Dining{% endif %}</h3>
+                    <p>{% if lang == 'de' %}Elegante Atmosphäre{% else %}Elegant atmosphere{% endif %}</p>
+                    <button class="view-btn" onclick="openLightbox(this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="restaurant">
+                <div class="gallery-image">
+                    <div class="image-placeholder restaurant-2">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                </div>
+                <div class="gallery-overlay">
+                    <h3>{% if lang == 'de' %}Eingang{% else %}Entrance{% endif %}</h3>
+                    <p>{% if lang == 'de' %}Herzlicher Empfang{% else %}Warm reception{% endif %}</p>
+                    <button class="view-btn" onclick="openLightbox(this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Event Photos -->
+            <div class="gallery-item" data-category="events">
+                <div class="gallery-image">
+                    <div class="image-placeholder event-1">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                </div>
+                <div class="gallery-overlay">
+                    <h3>{% if lang == 'de' %}Geburtstagsfest{% else %}Birthday Party{% endif %}</h3>
+                    <p>{% if lang == 'de' %}Unvergessliche Momente{% else %}Unforgettable moments{% endif %}</p>
+                    <button class="view-btn" onclick="openLightbox(this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <div class="lightbox-image">
+            <div class="image-placeholder" id="lightbox-img">
+                <i class="fas fa-camera"></i>
+            </div>
+        </div>
+        <div class="lightbox-info">
+            <h3 id="lightbox-title">Image Title</h3>
+            <p id="lightbox-description">Image description</p>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<section class="gallery-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>{% if lang == 'de' %}Erleben Sie es selbst{% else %}Experience It Yourself{% endif %}</h2>
+            <p>{% if lang == 'de' %}Besuchen Sie Yí Restaurant und werden Sie Teil unserer Geschichte{% else %}Visit Yí Restaurant and become part of our story{% endif %}</p>
+            <button class="btn-primary large" onclick="openReservationModal()">
+                {% if lang == 'de' %}Tisch reservieren{% else %}Book a Table{% endif %}
+            </button>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Filter functionality
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const filter = this.dataset.filter;
+        
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        filterImages(filter);
+    });
+});
+
+function filterImages(filter) {
+    const items = document.querySelectorAll('.gallery-item');
+    
+    items.forEach(item => {
+        if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = 'block';
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+            }, 100);
+        } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.8)';
+            setTimeout(() => item.style.display = 'none', 300);
+        }
+    });
+}
+
+// Lightbox functionality
+function openLightbox(button) {
+    const galleryItem = button.closest('.gallery-item');
+    const title = galleryItem.querySelector('h3').textContent;
+    const description = galleryItem.querySelector('p').textContent;
+    
+    document.getElementById('lightbox-title').textContent = title;
+    document.getElementById('lightbox-description').textContent = description;
+    
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => lightbox.style.opacity = '1', 10);
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.opacity = '0';
+    document.body.style.overflow = 'auto';
+    
+    setTimeout(() => lightbox.style.display = 'none', 300);
+}
+
+// Initialize gallery animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, index * 100);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.gallery-item').forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(30px)';
+    item.style.transition = 'all 0.6s ease';
+    observer.observe(item);
+});
+
+// Close lightbox on outside click
+document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeLightbox();
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% block title %}{% if lang == 'de' %}Speisekarte{% else %}Menu{% endif %} - {{ restaurant.name }}{% endblock %}
+
+{% block content %}
+<!-- Menu Hero -->
+<section class="page-hero menu-hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="page-title">
+                {% if lang == 'de' %}Unsere Speisekarte{% else %}Our Menu{% endif %}
+            </h1>
+            <p class="page-description">
+                {% if lang == 'de' %}
+                Entdecken Sie unsere exquisite Auswahl an frischen Meeresfrüchten, authentischen Paellas und köstlichen Beilagen.
+                {% else %}
+                Discover our exquisite selection of fresh seafood, authentic paellas, and delicious sides.
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Menu Content -->
+<section class="menu-section">
+    <div class="container">
+        <!-- Allergen Notice -->
+        <div class="allergen-notice">
+            <i class="fas fa-info-circle"></i>
+            <span>
+                {% if lang == 'de' %}
+                Bitte informieren Sie uns über Allergien oder Unverträglichkeiten.
+                {% else %}
+                Please notify us if you are allergic to any ingredients.
+                {% endif %}
+            </span>
+        </div>
+
+        <!-- Main Dishes -->
+        <div class="menu-category">
+            <div class="category-header">
+                <h2 class="category-title">
+                    {% if lang == 'de' %}Hauptgerichte{% else %}Main Dishes{% endif %}
+                </h2>
+                <div class="category-icon">
+                    <i class="fas fa-fish"></i>
+                </div>
+            </div>
+
+            <div class="dishes-grid">
+                {% for dish in menu.main_dishes[lang] %}
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-name">{{ dish.name }}</h3>
+                        {% if dish.price > 0 %}
+                        <span class="dish-price">€{{ dish.price }}</span>
+                        {% endif %}
+                    </div>
+                    <p class="dish-description">{{ dish.description }}</p>
+                    <div class="dish-footer">
+                        <span class="availability {{ 'available' if 'Available' in dish.availability or 'Verfügbar' in dish.availability else 'limited' }}">
+                            <i class="fas fa-circle"></i>
+                            {{ dish.availability }}
+                        </span>
+                        {% if dish.price > 0 %}
+                        <button class="add-to-order" onclick="addToOrder('{{ dish.name }}', {{ dish.price }})">
+                            <i class="fas fa-plus"></i>
+                            {% if lang == 'de' %}Hinzufügen{% else %}Add{% endif %}
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Side Dishes -->
+        <div class="menu-category">
+            <div class="category-header">
+                <h2 class="category-title">
+                    {% if lang == 'de' %}Beilagen{% else %}Side Dishes{% endif %}
+                </h2>
+                <div class="category-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+            </div>
+
+            <div class="sides-grid">
+                {% for side in menu.sides[lang] %}
+                <div class="side-card">
+                    <div class="side-header">
+                        <h4 class="side-name">{{ side.name }}</h4>
+                        <span class="side-price">€{{ side.price }}</span>
+                    </div>
+                    <p class="side-description">{{ side.description }}</p>
+                    <button class="add-side" onclick="addToOrder('{{ side.name }}', {{ side.price }})">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Wine Pairing Section -->
+        <div class="wine-section">
+            <div class="wine-header">
+                <h2>{% if lang == 'de' %}Weinempfehlungen{% else %}Wine Pairings{% endif %}</h2>
+                <p>{% if lang == 'de' %}Fragen Sie unsere Sommeliers nach der perfekten Weinbegleitung{% else %}Ask our sommeliers about perfect wine pairings{% endif %}</p>
+            </div>
+            <div class="wine-categories">
+                <div class="wine-category">
+                    <i class="fas fa-wine-glass"></i>
+                    <h4>{% if lang == 'de' %}Weißweine{% else %}White Wines{% endif %}</h4>
+                    <p>{% if lang == 'de' %}Perfekt zu Meeresfrüchten{% else %}Perfect with seafood{% endif %}</p>
+                </div>
+                <div class="wine-category">
+                    <i class="fas fa-wine-glass-alt"></i>
+                    <h4>{% if lang == 'de' %}Roséweine{% else %}Rosé Wines{% endif %}</h4>
+                    <p>{% if lang == 'de' %}Ideal für Paella{% else %}Ideal for paella{% endif %}</p>
+                </div>
+                <div class="wine-category">
+                    <i class="fas fa-glass-cheers"></i>
+                    <h4>{% if lang == 'de' %}Champagner{% else %}Champagne{% endif %}</h4>
+                    <p>{% if lang == 'de' %}Für besondere Anlässe{% else %}For special occasions{% endif %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Order Summary (Floating) -->
+<div class="order-summary" id="order-summary" style="display: none;">
+    <div class="order-header">
+        <h3>{% if lang == 'de' %}Ihre Bestellung{% else %}Your Order{% endif %}</h3>
+        <button onclick="clearOrder()" class="clear-order">
+            <i class="fas fa-trash"></i>
+        </button>
+    </div>
+    <div class="order-items" id="order-items"></div>
+    <div class="order-total">
+        <span>{% if lang == 'de' %}Gesamt{% else %}Total{% endif %}: €<span id="order-total">0</span></span>
+    </div>
+    <button class="order-btn" onclick="proceedToReservation()">
+        {% if lang == 'de' %}Zur Reservierung{% else %}Make Reservation{% endif %}
+    </button>
+</div>
+
+<!-- Call to Action -->
+<section class="menu-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>{% if lang == 'de' %}Lust auf diese Köstlichkeiten?{% else %}Ready to Taste These Delights?{% endif %}</h2>
+            <p>{% if lang == 'de' %}Reservieren Sie Ihren Tisch für ein unvergessliches kulinarisches Erlebnis{% else %}Reserve your table for an unforgettable culinary experience{% endif %}</p>
+            <button class="btn-primary large" onclick="openReservationModal()">
+                {% if lang == 'de' %}Jetzt reservieren{% else %}Book Your Table{% endif %}
+            </button>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let orderItems = [];
+let orderTotal = 0;
+
+function addToOrder(name, price) {
+    const existingItem = orderItems.find(item => item.name === name);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        orderItems.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+    
+    updateOrderDisplay();
+    showOrderSummary();
+    
+    // Visual feedback
+    const button = event.target.closest('button');
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => button.style.transform = 'scale(1)', 150);
+}
+
+function updateOrderDisplay() {
+    const orderItemsContainer = document.getElementById('order-items');
+    const orderTotalElement = document.getElementById('order-total');
+    
+    orderItemsContainer.innerHTML = '';
+    orderTotal = 0;
+    
+    orderItems.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        orderTotal += itemTotal;
+        
+        const itemElement = document.createElement('div');
+        itemElement.className = 'order-item';
+        itemElement.innerHTML = `
+            <div class="item-info">
+                <span class="item-name">${item.name}</span>
+                <span class="item-price">€${itemTotal}</span>
+            </div>
+            <div class="item-controls">
+                <button onclick="decreaseQuantity(${index})">-</button>
+                <span class="quantity">${item.quantity}</span>
+                <button onclick="increaseQuantity(${index})">+</button>
+            </div>
+        `;
+        
+        orderItemsContainer.appendChild(itemElement);
+    });
+    
+    orderTotalElement.textContent = orderTotal.toFixed(2);
+}
+
+function increaseQuantity(index) {
+    orderItems[index].quantity += 1;
+    updateOrderDisplay();
+}
+
+function decreaseQuantity(index) {
+    if (orderItems[index].quantity > 1) {
+        orderItems[index].quantity -= 1;
+    } else {
+        orderItems.splice(index, 1);
+    }
+    
+    updateOrderDisplay();
+    
+    if (orderItems.length === 0) {
+        hideOrderSummary();
+    }
+}
+
+function clearOrder() {
+    orderItems = [];
+    updateOrderDisplay();
+    hideOrderSummary();
+}
+
+function showOrderSummary() {
+    document.getElementById('order-summary').style.display = 'block';
+    setTimeout(() => {
+        document.getElementById('order-summary').style.opacity = '1';
+        document.getElementById('order-summary').style.transform = 'translateX(0)';
+    }, 10);
+}
+
+function hideOrderSummary() {
+    const summary = document.getElementById('order-summary');
+    summary.style.opacity = '0';
+    summary.style.transform = 'translateX(100%)';
+    setTimeout(() => {
+        summary.style.display = 'none';
+    }, 300);
+}
+
+function proceedToReservation() {
+    // Store order in localStorage for reservation form
+    localStorage.setItem('preOrder', JSON.stringify(orderItems));
+    openReservationModal();
+}
+
+// Smooth scroll animations
+const observeElements = document.querySelectorAll('.dish-card, .side-card');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { threshold: 0.1 });
+
+observeElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'all 0.6s ease';
+    observer.observe(el);
+});
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Edit Reservation #{{ reservation.id }}</h1>
+<form method="post" action="/admin/reservation/{{ reservation.id }}/edit">
+  <label>Name<br>
+    <input type="text" name="name" value="{{ reservation.name }}" required>
+  </label><br><br>
+  <label>Email<br>
+    <input type="email" name="email" value="{{ reservation.email }}" required>
+  </label><br><br>
+  <label>Phone<br>
+    <input type="text" name="phone" value="{{ reservation.phone }}" required>
+  </label><br><br>
+  <label>Date<br>
+    <input type="date" name="date" value="{{ reservation.date }}" required>
+  </label><br><br>
+  <label>Time<br>
+    <input type="time" name="time" value="{{ reservation.time }}" required>
+  </label><br><br>
+  <label>Guests<br>
+    <input type="number" name="guests" value="{{ reservation.guests }}" min="1" required>
+  </label><br><br>
+  <label>Message<br>
+    <textarea name="message">{{ reservation.message or '' }}</textarea>
+  </label><br><br>
+  <label>Language<br>
+    <select name="lang">
+      <option value="en" {% if reservation.lang == 'en' %}selected{% endif %}>English</option>
+      <option value="de" {% if reservation.lang == 'de' %}selected{% endif %}>Deutsch</option>
+    </select>
+  </label><br><br>
+  <button type="submit">Save</button>
+  <a href="/admin/reservations" style="margin-left:12px">Cancel</a>
+</form>
+{% endblock %}

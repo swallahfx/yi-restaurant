@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1 class="hero-title">
+                <span class="title-main">{{ restaurant.name }}</span>
+                <span class="title-sub">{{ restaurant.tagline[lang] }}</span>
+            </h1>
+            <p class="hero-description">{{ restaurant.description[lang] }}</p>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="openReservationModal()">
+                    {% if lang == 'de' %}Jetzt reservieren{% else %}Book Now{% endif %}
+                </button>
+                <a href="/menu?lang={{ lang }}" class="btn-secondary">
+                    {% if lang == 'de' %}Speisekarte ansehen{% else %}View Menu{% endif %}
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-placeholder">
+                <i class="fas fa-utensils"></i>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <span>{% if lang == 'de' %}Scrollen{% else %}Scroll{% endif %}</span>
+        <div class="scroll-arrow"></div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">
+                {% if lang == 'de' %}Warum Yí Restaurant{% else %}Why Choose Yí{% endif %}
+            </h2>
+            <p class="section-description">
+                {% if lang == 'de' %}
+                Erleben Sie außergewöhnliche Meeresfrüchte-Küche in eleganter Atmosphäre
+                {% else %}
+                Experience exceptional seafood cuisine in an elegant atmosphere
+                {% endif %}
+            </p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-fish"></i>
+                </div>
+                <h3>{% if lang == 'de' %}Frische Meeresfrüchte{% else %}Fresh Seafood{% endif %}</h3>
+                <p>{% if lang == 'de' %}Täglich frische Auswahl der besten Meeresfrüchte aus nachhaltigen Quellen{% else %}Daily fresh selection of the finest seafood from sustainable sources{% endif %}</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-pepper-hot"></i>
+                </div>
+                <h3>{% if lang == 'de' %}Authentische Paella{% else %}Authentic Paella{% endif %}</h3>
+                <p>{% if lang == 'de' %}Traditionelle Paella-Rezepte mit karibischen und spanischen Einflüssen{% else %}Traditional paella recipes with Caribbean and Spanish influences{% endif %}</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-wine-glass-alt"></i>
+                </div>
+                <h3>{% if lang == 'de' %}Elegante Atmosphäre{% else %}Elegant Atmosphere{% endif %}</h3>
+                <p>{% if lang == 'de' %}Stilvolles Ambiente für unvergessliche kulinarische Erlebnisse{% else %}Stylish ambiance for unforgettable culinary experiences{% endif %}</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>{% if lang == 'de' %}Erstklassiger Service{% else %}Exceptional Service{% endif %}</h3>
+                <p>{% if lang == 'de' %}Professionelles Team sorgt für perfekte Betreuung jeden Gastes{% else %}Professional team ensures perfect care for every guest{% endif %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Menu Preview -->
+<section class="menu-preview">
+    <div class="container">
+        <div class="menu-content">
+            <div class="menu-text">
+                <h2 class="section-title">
+                    {% if lang == 'de' %}Unsere Spezialitäten{% else %}Our Specialties{% endif %}
+                </h2>
+                <p class="section-description">
+                    {% if lang == 'de' %}
+                    Entdecken Sie unsere Signature-Gerichte, die mit den feinsten Zutaten und traditionellen Techniken zubereitet werden.
+                    {% else %}
+                    Discover our signature dishes, prepared with the finest ingredients and traditional techniques.
+                    {% endif %}
+                </p>
+                
+                <div class="featured-dishes">
+                    <div class="dish-item">
+                        <h4>{% if lang == 'de' %}Louisiana Paella{% else %}Louisiana Paella{% endif %}</h4>
+                        <p>{% if lang == 'de' %}Haitianische Paella mit Hähnchen, Wurst, Garnelen{% else %}Haitian paella with chicken, sausage, shrimp{% endif %}</p>
+                        <span class="price">€28</span>
+                    </div>
+                    
+                    <div class="dish-item">
+                        <h4>{% if lang == 'de' %}Frischer Lachs{% else %}Fresh Salmon{% endif %}</h4>
+                        <p>{% if lang == 'de' %}Sautiert mit Olivenöl und karibischen Gewürzen{% else %}Sautéed with olive oil and Caribbean spices{% endif %}</p>
+                        <span class="price">€28</span>
+                    </div>
+                </div>
+                
+                <a href="/menu?lang={{ lang }}" class="btn-outline">
+                    {% if lang == 'de' %}Vollständige Speisekarte{% else %}Full Menu{% endif %}
+                </a>
+            </div>
+            
+            <div class="menu-image">
+                <div class="image-placeholder paella">
+                    <i class="fas fa-utensils"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Preview -->
+<section class="gallery-preview">
+    <div class="container">
+        <h2 class="section-title">
+            {% if lang == 'de' %}Impressionen{% else %}Gallery{% endif %}
+        </h2>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="image-placeholder">
+                    <i class="fas fa-camera"></i>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-placeholder">
+                    <i class="fas fa-camera"></i>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-placeholder">
+                    <i class="fas fa-camera"></i>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-placeholder">
+                    <i class="fas fa-camera"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-actions">
+            <a href="/gallery?lang={{ lang }}" class="btn-outline">
+                {% if lang == 'de' %}Alle Bilder ansehen{% else %}View All Photos{% endif %}
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>{% if lang == 'de' %}Bereit für ein unvergessliches Erlebnis?{% else %}Ready for an Unforgettable Experience?{% endif %}</h2>
+            <p>{% if lang == 'de' %}Reservieren Sie Ihren Tisch und entdecken Sie die Kunst der Meeresfrüchte-Küche.{% else %}Reserve your table and discover the art of seafood cuisine.{% endif %}</p>
+            <div class="cta-actions">
+                <button class="btn-primary large" onclick="openReservationModal()">
+                    {% if lang == 'de' %}Jetzt reservieren{% else %}Make Reservation{% endif %}
+                </button>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <span>{{ restaurant.phone }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if 'reservation=success' in request.url.query %}
+<div class="notification success">
+    <div class="notification-content">
+        <i class="fas fa-check-circle"></i>
+        <span>
+            {% if lang == 'de' %}
+            Vielen Dank! Ihre Reservierung wurde erfolgreich eingereicht. Wir kontaktieren Sie bald.
+            {% else %}
+            Thank you! Your reservation has been submitted successfully. We'll contact you soon.
+            {% endif %}
+        </span>
+        <button onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Auto-hide notifications
+setTimeout(() => {
+    const notifications = document.querySelectorAll('.notification');
+    notifications.forEach(notification => {
+        notification.style.opacity = '0';
+        setTimeout(() => notification.style.display = 'none', 300);
+    });
+}, 5000);
+
+// Hero animations
+window.addEventListener('load', () => {
+    document.querySelector('.hero-content').classList.add('animate-in');
+});
+
+// Scroll effects
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const navbar = document.getElementById('navbar');
+    
+    if (scrolled > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+</script>
+{% endblock %}

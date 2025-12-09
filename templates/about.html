@@ -1,0 +1,411 @@
+{% extends "base.html" %}
+
+{% block title %}{% if lang == 'de' %}Über uns{% else %}About Us{% endif %} - {{ restaurant.name }}{% endblock %}
+
+{% block content %}
+<!-- About Hero -->
+<section class="page-hero about-hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="page-title">
+                {% if lang == 'de' %}Unsere Geschichte{% else %}Our Story{% endif %}
+            </h1>
+            <p class="page-description">
+                {% if lang == 'de' %}
+                Eine Reise durch Geschmack, Tradition und kulinarische Exzellenz
+                {% else %}
+                A journey through taste, tradition, and culinary excellence
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Story Section -->
+<section class="story-section">
+    <div class="container">
+        <div class="story-content">
+            <div class="story-text">
+                <h2>{% if lang == 'de' %}Die Geburt einer Vision{% else %}The Birth of a Vision{% endif %}</h2>
+                <p>
+                    {% if lang == 'de' %}
+                    Yí Restaurant entstand aus der Leidenschaft für authentische Meeresfrüchte-Küche und dem Wunsch, 
+                    die reichen kulinarischen Traditionen der Karibik und Spaniens zu vereinen. Unser Name "Yí" 
+                    symbolisiert Harmonie und Einheit - Prinzipien, die sich in jedem unserer Gerichte widerspiegeln.
+                    {% else %}
+                    Yí Restaurant was born from a passion for authentic seafood cuisine and a desire to unite 
+                    the rich culinary traditions of the Caribbean and Spain. Our name "Yí" symbolizes harmony 
+                    and unity - principles reflected in each of our dishes.
+                    {% endif %}
+                </p>
+                <p>
+                    {% if lang == 'de' %}
+                    Seit unserer Eröffnung haben wir uns der Mission verschrieben, nur die frischesten Zutaten 
+                    zu verwenden und traditionelle Kochtechniken mit modernen kulinarischen Innovationen zu verbinden. 
+                    Jedes Gericht erzählt eine Geschichte von Geschmack, Qualität und Respekt vor den Traditionen.
+                    {% else %}
+                    Since our opening, we have dedicated ourselves to the mission of using only the freshest 
+                    ingredients and combining traditional cooking techniques with modern culinary innovations. 
+                    Each dish tells a story of flavor, quality, and respect for traditions.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="story-image">
+                <div class="image-placeholder chef">
+                    <i class="fas fa-chef-hat"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="values-section">
+    <div class="container">
+        <h2 class="section-title">
+            {% if lang == 'de' %}Unsere Werte{% else %}Our Values{% endif %}
+        </h2>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3>{% if lang == 'de' %}Nachhaltigkeit{% else %}Sustainability{% endif %}</h3>
+                <p>
+                    {% if lang == 'de' %}
+                    Wir beziehen unsere Meeresfrüchte ausschließlich aus nachhaltigen Quellen und 
+                    unterstützen lokale Fischer und Lieferanten, um die Umwelt zu schützen.
+                    {% else %}
+                    We source our seafood exclusively from sustainable sources and support local 
+                    fishermen and suppliers to protect the environment.
+                    {% endif %}
+                </p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>{% if lang == 'de' %}Leidenschaft{% else %}Passion{% endif %}</h3>
+                <p>
+                    {% if lang == 'de' %}
+                    Jedes Gericht wird mit Liebe und Hingabe zubereitet. Unsere Küchenchefs bringen 
+                    jahrelange Erfahrung und echte Leidenschaft für die Meeresfrüchte-Küche mit.
+                    {% else %}
+                    Every dish is prepared with love and dedication. Our chefs bring years of 
+                    experience and genuine passion for seafood cuisine.
+                    {% endif %}
+                </p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>{% if lang == 'de' %}Gemeinschaft{% else %}Community{% endif %}</h3>
+                <p>
+                    {% if lang == 'de' %}
+                    Wir schaffen einen Ort, an dem Familien und Freunde zusammenkommen können, 
+                    um unvergessliche Momente bei außergewöhnlichem Essen zu teilen.
+                    {% else %}
+                    We create a place where families and friends can come together to share 
+                    unforgettable moments over exceptional food.
+                    {% endif %}
+                </p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>{% if lang == 'de' %}Exzellenz{% else %}Excellence{% endif %}</h3>
+                <p>
+                    {% if lang == 'de' %}
+                    Wir streben nach Perfektion in jedem Detail - von der Auswahl der Zutaten 
+                    bis zur Präsentation jedes Gerichts und dem Service für unsere Gäste.
+                    {% else %}
+                    We strive for perfection in every detail - from ingredient selection 
+                    to the presentation of each dish and service to our guests.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section">
+    <div class="container">
+        <h2 class="section-title">
+            {% if lang == 'de' %}Unser Team{% else %}Our Team{% endif %}
+        </h2>
+        <p class="section-description">
+            {% if lang == 'de' %}
+            Lernen Sie die talentierten Menschen kennen, die Ihre kulinarische Reise bei Yí gestalten
+            {% else %}
+            Meet the talented people who craft your culinary journey at Yí
+            {% endif %}
+        </p>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                </div>
+                <h3>{% if lang == 'de' %}Chefkoch{% else %}Executive Chef{% endif %}</h3>
+                <h4>Chef Rodriguez</h4>
+                <p>
+                    {% if lang == 'de' %}
+                    Mit über 15 Jahren Erfahrung in der spanischen und karibischen Küche 
+                    führt Chef Rodriguez unser Küchenteam mit Leidenschaft und Kreativität.
+                    {% else %}
+                    With over 15 years of experience in Spanish and Caribbean cuisine, 
+                    Chef Rodriguez leads our kitchen team with passion and creativity.
+                    {% endif %}
+                </p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-wine-glass"></i>
+                    </div>
+                </div>
+                <h3>{% if lang == 'de' %}Sommelier{% else %}Sommelier{% endif %}</h3>
+                <h4>Maria Santos</h4>
+                <p>
+                    {% if lang == 'de' %}
+                    Maria kuratiert unsere exquisite Weinauswahl und sorgt dafür, dass jeder 
+                    Wein perfekt zu unseren Meeresfrüchte-Spezialitäten harmoniert.
+                    {% else %}
+                    Maria curates our exquisite wine selection and ensures every wine 
+                    perfectly complements our seafood specialties.
+                    {% endif %}
+                </p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                </div>
+                <h3>{% if lang == 'de' %}Restaurantleiter{% else %}Restaurant Manager{% endif %}</h3>
+                <h4>Antonio García</h4>
+                <p>
+                    {% if lang == 'de' %}
+                    Antonio sorgt dafür, dass jeder Besuch bei Yí zu einem unvergesslichen 
+                    Erlebnis wird, mit seinem Auge für Details und seinem herzlichen Service.
+                    {% else %}
+                    Antonio ensures every visit to Yí becomes an unforgettable experience, 
+                    with his eye for detail and warm service.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Philosophy Section -->
+<section class="philosophy-section">
+    <div class="container">
+        <div class="philosophy-content">
+            <div class="philosophy-text">
+                <h2>{% if lang == 'de' %}Unsere Philosophie{% else %}Our Philosophy{% endif %}</h2>
+                <blockquote>
+                    {% if lang == 'de' %}
+                    "Kochen ist nicht nur das Zubereiten von Speisen - es ist die Kunst, 
+                    Geschichten zu erzählen, Erinnerungen zu schaffen und Menschen zu verbinden. 
+                    Bei Yí glauben wir, dass jede Mahlzeit eine Feier des Lebens ist."
+                    {% else %}
+                    "Cooking is not just preparing food - it's the art of telling stories, 
+                    creating memories, and connecting people. At Yí, we believe every meal 
+                    is a celebration of life."
+                    {% endif %}
+                </blockquote>
+                <cite>- {% if lang == 'de' %}Chefkoch{% else %}Executive Chef{% endif %} Rodriguez</cite>
+                
+                <div class="philosophy-points">
+                    <div class="point">
+                        <i class="fas fa-check"></i>
+                        <span>
+                            {% if lang == 'de' %}Authentizität in jedem Gericht{% else %}Authenticity in every dish{% endif %}
+                        </span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-check"></i>
+                        <span>
+                            {% if lang == 'de' %}Respekt vor den Traditionen{% else %}Respect for traditions{% endif %}
+                        </span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-check"></i>
+                        <span>
+                            {% if lang == 'de' %}Innovation mit Bedacht{% else %}Thoughtful innovation{% endif %}
+                        </span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-check"></i>
+                        <span>
+                            {% if lang == 'de' %}Perfekte Gastfreundschaft{% else %}Perfect hospitality{% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="philosophy-image">
+                <div class="image-placeholder restaurant">
+                    <i class="fas fa-utensils"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Awards Section -->
+<section class="awards-section">
+    <div class="container">
+        <h2 class="section-title">
+            {% if lang == 'de' %}Auszeichnungen & Anerkennungen{% else %}Awards & Recognition{% endif %}
+        </h2>
+        
+        <div class="awards-grid">
+            <div class="award-card">
+                <div class="award-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>2024</h3>
+                <p>
+                    {% if lang == 'de' %}
+                    Beste Meeresfrüchte-Restaurant der Stadt
+                    {% else %}
+                    Best Seafood Restaurant in the City
+                    {% endif %}
+                </p>
+            </div>
+            
+            <div class="award-card">
+                <div class="award-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>2023</h3>
+                <p>
+                    {% if lang == 'de' %}
+                    TripAdvisor Travellers' Choice Award
+                    {% else %}
+                    TripAdvisor Travellers' Choice Award
+                    {% endif %}
+                </p>
+            </div>
+            
+            <div class="award-card">
+                <div class="award-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>2023</h3>
+                <p>
+                    {% if lang == 'de' %}
+                    Nachhaltigkeitsauszeichnung für umweltbewusste Küche
+                    {% else %}
+                    Sustainability Award for Eco-Conscious Cuisine
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="about-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>
+                {% if lang == 'de' %}
+                Möchten Sie Teil unserer Geschichte werden?
+                {% else %}
+                Ready to Become Part of Our Story?
+                {% endif %}
+            </h2>
+            <p>
+                {% if lang == 'de' %}
+                Besuchen Sie uns und erleben Sie selbst, was Yí Restaurant so besonders macht
+                {% else %}
+                Visit us and experience firsthand what makes Yí Restaurant so special
+                {% endif %}
+            </p>
+            <div class="cta-actions">
+                <button class="btn-primary large" onclick="openReservationModal()">
+                    {% if lang == 'de' %}Tisch reservieren{% else %}Book a Table{% endif %}
+                </button>
+                <a href="/menu?lang={{ lang }}" class="btn-outline">
+                    {% if lang == 'de' %}Speisekarte entdecken{% else %}Explore Menu{% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Animated counters for stats
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    
+    counters.forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        const increment = target / 100;
+        let current = 0;
+        
+        const updateCounter = () => {
+            if (current < target) {
+                current += increment;
+                counter.textContent = Math.ceil(current);
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target;
+            }
+        };
+        
+        updateCounter();
+    });
+}
+
+// Parallax effect for hero section
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.about-hero .hero-bg');
+    if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
+});
+
+// Intersection observer for animations
+const observeElements = document.querySelectorAll('.value-card, .team-member, .award-card');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { threshold: 0.1 });
+
+observeElements.forEach((el, index) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+    observer.observe(el);
+});
+
+// Initialize animations when page loads
+window.addEventListener('load', () => {
+    document.querySelector('.hero-content').classList.add('animate-in');
+});
+</script>
+{% endblock %}
